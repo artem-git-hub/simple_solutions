@@ -1,0 +1,19 @@
+<!-- item_detail.html -->
+
+<h2>{{ item.name }}</h2>
+<p>{{ item.description }}</p>
+<p>Price: {{ item.price }} {{ item.currency }}</p>
+
+<form action="{% url 'get_session_id' item.id %}" method="GET">
+    <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="{{ STRIPE_PUBLIC_KEY }}"
+        data-amount="{{ item_price_in_cents }}"
+        data-name="{{ item.name }}"
+        data-description="{{ item.description }}"
+        data-image="https://example.com/your-image.jpg"
+        data-currency="{{ item.currency }}"
+        data-locale="auto"
+        data-zip-code="true">
+    </script>
+</form>
